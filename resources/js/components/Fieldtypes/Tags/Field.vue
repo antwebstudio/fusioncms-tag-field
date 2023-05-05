@@ -39,6 +39,8 @@
       },
       tags: {
         get() {
+          if (!this.value) return [];
+          
           return this.value.map((tag) => {
             if (typeof(tag) == 'object' || typeof(tag) == 'OBJECT' || typeof(tag) == 'Object') {
               return tag.name;
