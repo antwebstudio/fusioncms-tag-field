@@ -14,7 +14,16 @@ let path = require('path');
 
 mix.setPublicPath('public')
 	.js('resources/js/app.js', 'public/js')
-    .vue()
+    .vue({
+        version: 3,
+        options: {
+          compilerOptions: {
+            compatConfig: {
+              MODE: 3,
+            },
+          },
+        },
+      })
 	// .sass('resources/scss/app.scss', 'public/css')
     .webpackConfig({
         output: {
@@ -23,6 +32,8 @@ mix.setPublicPath('public')
         },
         resolve: {
             alias: {
+                "vue": "@vue/compat/dist/vue.esm-bundler.js",
+                "@vue/composition-api": "@vue/compat",
                 '@': path.resolve(__dirname, '../../fusioncms/cms/resources/js/'),
             },
         },

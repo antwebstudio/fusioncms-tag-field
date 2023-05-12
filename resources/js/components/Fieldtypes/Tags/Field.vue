@@ -3,6 +3,8 @@
     <label :for="field.handle" class="form__label">{{ field.name }}</label>
     <div>
       <input v-model="tag" v-on:keyup.enter="addTag" type="text" class="w-100 form-control" :placeholder="placeholder">
+    </div>
+    <div>
       <span @click="removeTag(tag)" v-for="(tag, index) in tags" :key="index" class="badge badge-primary">{{tag}}<i @click="removeTag(index)" class="fa fa-times"></i></span>
     </div>
   </div>

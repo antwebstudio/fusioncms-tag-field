@@ -19,7 +19,7 @@
 
 <script>
     import Form from '@/services/Form'
-    import SharedForm from './SharedForm'
+    import SharedForm from './SharedForm.vue'
     //import store from '../../store'
 
     export default {

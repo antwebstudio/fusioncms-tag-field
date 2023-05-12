@@ -39,7 +39,7 @@ class AddonServiceProvider extends \Fusion\Providers\AddonServiceProvider
             );
         }
         //
-        \Fusion::asset('/addons/TagFieldtype/js/app.js');
+        \Fusion::asset('/addons/TagFieldtype/js/app.umd.js');
         fieldtypes()->register(\Addons\TagFieldtype\Fieldtypes\TagFieldtype::class);
     }
 }

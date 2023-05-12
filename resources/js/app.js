@@ -1,11 +1,12 @@
-
+import { defineAsyncComponent } from 'vue'
 
 window.Fusion.booting(function(Vue, router, store) {
-    Vue.component('tags-fieldtype', () => import('./components/Fieldtypes/Tags/Field'))
-	router.addRoutes([
+    Vue.component('tags-fieldtype', defineAsyncComponent(() => import('./components/Fieldtypes/Tags/Field.vue')))
+
+	const routes = [
 		{
 			path: '/tags',
-            component: () => import('./pages/Tag/Index'),
+            component: () => import('./pages/Tag/Index.vue'),
             name: 'tag',
             meta: {
                 requiresAuth: true,
@@ -14,7 +15,7 @@ window.Fusion.booting(function(Vue, router, store) {
 		},
 		{
 			path: '/tags/:id/edit',
-            component: () => import('./pages/Tag/Edit'),
+            component: () => import('./pages/Tag/Edit.vue'),
             name: 'tag.edit',
             meta: {
                 requiresAuth: true,
@@ -30,7 +31,10 @@ window.Fusion.booting(function(Vue, router, store) {
         //         layout: 'admin'
         //     }
 		// }
-	])
+	]
+    routes.forEach((route) => {
+        router.addRoute(route)
+    })
 })
 
 window.addEventListener('DOMContentLoaded', function () {
