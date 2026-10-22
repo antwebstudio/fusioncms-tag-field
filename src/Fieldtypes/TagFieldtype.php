@@ -75,6 +75,18 @@ class TagFieldtype extends \Fusion\Fieldtypes\Fieldtype
         $model->attachTags($newValues, $this->getTagType($field));
     }
 
+    /**
+     * Tags live in `taggables`, which has no `field_id` column, so the
+     * default `wherePivot('field_id', ...)` detach can't be used.
+     */
+    public function destroyRelationship($model, Field $field)
+    {
+        $model->detachTags(
+            collect($model->tagsWithType($this->getTagType($field)))->pluck('name'),
+            $this->getTagType($field)
+        );
+    }
+
     public function getResource($model, Field $field)
     {
         // dd($this->getTagType($field), $model->tagsWithType($this->getTagType($field)));
